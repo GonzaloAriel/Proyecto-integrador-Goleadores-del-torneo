@@ -1,0 +1,47 @@
+# depslib dependency file v1.0
+1745364877 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\archivoclub.cpp
+
+1745364630 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\archivogoles.cpp
+
+1745364558 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\archivojugador.cpp
+
+1745364420 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\club.cpp
+
+1745364256 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\goles.cpp
+
+1745365164 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\ligamanager.cpp
+
+1745543453 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\main.cpp
+	<iostream>
+	"menu.h"
+
+1745549935 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\menu.cpp
+	"menu.h"
+	<iostream>
+	<cstdlib>
+	"rlutil.h"
+	<string>
+
+1745369458 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\jugador.cpp
+	"jugador.h"
+	<cstring>
+
+1745447964 c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\jugador.h
+	<string>
+
+1745370712 c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\menu.h
+
+1716487482 c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
