@@ -1,4 +1,5 @@
 #include "menu.h"
+#include "ligaManager.h"
 #include<iostream>
 #include <cstdlib>
 #include "rlutil.h"
@@ -34,8 +35,7 @@ void showItem(const char* TEXT,int posx,int posy,bool select )
 
 void menu::mostrar()
 {
-    // int puntajeMasAlto = 0;// Inicializamos puntaje más alto en 0
-    //string nombrePuntajeAlto = "";  // Inicializamos nombre en una cadena vacía
+    ligaManager lManager;
 
 ///inicializacion para las opciones del menu
 /// a " Y " la inicializamos en 0.
@@ -149,8 +149,9 @@ void menu::mostrar()
                 switch(y)
                 {
                 case 0:
-                    cout<< "Aca metodo opcion 1"<<endl; ///Metodo para ingresar jugadores
-                    cout<<" "<<endl;
+                    lManager.inscripcionJugador();
+                    /*cout<< "Aca metodo opcion 1"<<endl; ///Metodo para ingresar jugadores
+                    cout<<" "<<endl;*/
                     system("pause");
                     system ("cls");
                     break;

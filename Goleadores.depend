@@ -3,30 +3,38 @@
 
 1745364630 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\archivogoles.cpp
 
-1745364558 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\archivojugador.cpp
+1746375265 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\archivojugador.cpp
+	"archivoJugador.h"
 
 1745364420 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\club.cpp
 
 1745364256 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\goles.cpp
 
-1745365164 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\ligamanager.cpp
+1746380603 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\ligamanager.cpp
+	<iostream>
+	"ligaManager.h"
+	"jugador.h"
+	"archivoJugador.h"
+	<string>
 
 1745543453 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\main.cpp
 	<iostream>
 	"menu.h"
 
-1745549935 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\menu.cpp
+1746380705 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\menu.cpp
 	"menu.h"
+	"ligaManager.h"
 	<iostream>
 	<cstdlib>
 	"rlutil.h"
 	<string>
 
-1745369458 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\jugador.cpp
+1746382454 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\jugador.cpp
 	"jugador.h"
 	<cstring>
+	<string>
 
-1745447964 c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\jugador.h
+1746375265 c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\jugador.h
 	<string>
 
 1745370712 c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\menu.h
@@ -44,4 +52,10 @@
 	<sys/ioctl.h>
 	<sys/types.h>
 	<sys/time.h>
+
+1746375265 c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\archivojugador.h
+	<string>
+	"jugador.h"
+
+1746288303 c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\ligamanager.h
 

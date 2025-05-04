@@ -33,4 +33,6 @@ public:
             std::string getTelefono();
             std::string getEmail();
             std::string getFechaNacimiento();
+
+            std::string leerRegistro();
 };
