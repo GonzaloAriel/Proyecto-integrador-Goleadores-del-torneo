@@ -53,3 +53,25 @@ void ligaManager::inscripcionJugador()
 
     cout<< nuevoJugador.leerRegistro()<<endl;
 }
+
+void ligaManager::listarRegistros()
+{
+    archivoJugador archJugador;
+    jugador registro;
+
+    int cantRegistros = archJugador.getCantidadRegistros();
+
+    if(cantRegistros > 0)
+    {
+        registro.encabezados();
+        for(int x=0; x<cantRegistros; x++)
+        {
+            registro = archJugador.leerJugador(x);
+            registro.mostrarEnColumna();
+        }
+    }
+    else
+    {
+        cout<< "No hay registros"<<endl;
+    }
+}

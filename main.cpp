@@ -7,7 +7,7 @@ int main()
 {
     menu Nmenu;
 
-    Nmenu.mostrar();
+    Nmenu.menuPrincipal();
 
     return 0;
 }

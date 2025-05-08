@@ -35,4 +35,7 @@ public:
             std::string getFechaNacimiento();
 
             std::string leerRegistro();
+
+            void encabezados();
+            void mostrarEnColumna();
 };

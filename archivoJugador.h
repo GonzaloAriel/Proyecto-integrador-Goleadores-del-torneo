@@ -13,5 +13,6 @@ public:
 
     bool guardarJugador(jugador registroJugador);
     int getCantidadRegistros();
+    jugador leerJugador(int posicion);
 
 };

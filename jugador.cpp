@@ -1,7 +1,8 @@
 #include "jugador.h"
-
+#include <iostream>
 #include <cstring>
 #include <string>
+#include <iomanip>
 
 using namespace std;
 
@@ -17,7 +18,7 @@ jugador::jugador()
 }
 
 jugador::jugador(int dni, int codigoClub, std::string nombre, std::string apellido,
-        std::string telefono, std::string email, std::string fechaNacimiento)
+                 std::string telefono, std::string email, std::string fechaNacimiento)
 {
     setDni(dni);
     setCodigoClub(codigoClub);
@@ -93,15 +94,44 @@ std::string jugador::getFechaNacimiento()
 
 std::string jugador::leerRegistro()
 {
-   std::string str = "";
+    std::string str = "";
 
-      str = to_string(_dni) + ",";
-      str += to_string(_codigoClub) + ",";
-      str += string(_apellido) + ",";
-      str += string(_nombre) + ",";
-      str += string(_telefono) + ",";
-      str += string(_email) + ",";
-      str += string(_fechaNacimiento);
+    str = to_string(_dni) + ",";
+    str += to_string(_codigoClub) + ",";
+    str += string(_apellido) + ",";
+    str += string(_nombre) + ",";
+    str += string(_telefono) + ",";
+    str += string(_email) + ",";
+    str += string(_fechaNacimiento);
 
-      return str;
+    return str;
 }
+
+void jugador::mostrarEnColumna()
+{
+    std::cout << std::left
+              << std::setw(10) << _dni
+              << std::setw(12) << _codigoClub
+              << std::setw(15) << _nombre
+              << std::setw(15) << _apellido
+              << std::setw(15) << _telefono
+              << std::setw(25) << _email
+              << std::setw(15) << _fechaNacimiento
+              << std::endl<<endl;
+}
+
+void jugador::encabezados()
+{
+    std::cout << std::left
+              << std::setw(10) << "DNI"
+              << std::setw(12) << "CodClub"
+              << std::setw(15) << "Nombre"
+              << std::setw(15) << "Apellido"
+              << std::setw(15) << "Teléfono"
+              << std::setw(25) << "Email"
+              << std::setw(15) << "F. Nacim."
+              << std::endl;
+
+    std::cout << std::string(107, '-') << std::endl;
+}
+

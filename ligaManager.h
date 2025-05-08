@@ -4,5 +4,5 @@ class ligaManager
 {
 public:
     void inscripcionJugador();
-
+    void listarRegistros();
 };

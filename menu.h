@@ -3,5 +3,7 @@
 class menu
 {
 public:
-    void mostrar();
+    void menuPrincipal();
+    void menuJugadores();
+
 };
