@@ -8,28 +8,34 @@ using namespace std;
 
 jugador::jugador()
 {
+    _jugadorID = 0;
     _dni = 0;
     _codigoClub = 0;
     strcpy(_apellido, "");
     strcpy(_nombre, "");
     strcpy(_telefono, "");
     strcpy(_email, "");
-    strcpy(_fechaNacimiento, "");
+    _fechaDeNacimiento = Fecha();
 }
 
-jugador::jugador(int dni, int codigoClub, std::string nombre, std::string apellido,
-                 std::string telefono, std::string email, std::string fechaNacimiento)
+jugador::jugador(int jugadorID, int dni, int codigoClub, std::string nombre, std::string apellido,
+                 std::string telefono, std::string email, Fecha fecha)
 {
+    setJugadorID(jugadorID);
     setDni(dni);
     setCodigoClub(codigoClub);
     setNombre(nombre);
     setApellido(apellido);
     setTelefono(telefono);
     setEmail(email);
-    setFechaNacimiento(fechaNacimiento);
+    setFechaNacimiento(fecha);
 }
 
 //Setter:
+void jugador::setJugadorID(int jugadorID)
+{
+    _jugadorID = jugadorID;
+}
 void jugador::setDni(int dni)
 {
     _dni = dni;
@@ -54,13 +60,17 @@ void jugador::setEmail(std::string email)
 {
     strcpy(_email, email.c_str());
 }
-void jugador::setFechaNacimiento(std::string fechaNacimiento)
+void jugador::setFechaNacimiento(Fecha fecha)
 {
-    strcpy(_fechaNacimiento, fechaNacimiento.c_str());
+    _fechaDeNacimiento = fecha;
 }
 
 
 //Getter:
+int jugador::getJugadorID()
+{
+    return _jugadorID;
+}
 int jugador::getDni()
 {
     return _dni;
@@ -85,9 +95,9 @@ std::string jugador::getEmail()
 {
     return _email;
 }
-std::string jugador::getFechaNacimiento()
+Fecha jugador::getFechaNacimiento()
 {
-    return _fechaNacimiento;
+    return _fechaDeNacimiento;
 }
 
 
@@ -102,27 +112,28 @@ std::string jugador::leerRegistro()
     str += string(_nombre) + ",";
     str += string(_telefono) + ",";
     str += string(_email) + ",";
-    str += string(_fechaNacimiento);
-
+    str += _fechaDeNacimiento.toString();
     return str;
 }
 
 void jugador::mostrarEnColumna()
 {
     std::cout << std::left
+              << std::setw(10) << _jugadorID
               << std::setw(10) << _dni
               << std::setw(12) << _codigoClub
               << std::setw(15) << _nombre
               << std::setw(15) << _apellido
               << std::setw(15) << _telefono
               << std::setw(25) << _email
-              << std::setw(15) << _fechaNacimiento
+              << std::setw(15) << _fechaDeNacimiento.toString()
               << std::endl<<endl;
 }
 
 void jugador::encabezados()
 {
     std::cout << std::left
+              << std::setw(10) << "ID"
               << std::setw(10) << "DNI"
               << std::setw(12) << "CodClub"
               << std::setw(15) << "Nombre"

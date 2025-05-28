@@ -3,14 +3,14 @@
 
 1745364630 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\archivogoles.cpp
 
-1746499747 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\archivojugador.cpp
+1748394058 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\archivojugador.cpp
 	"archivoJugador.h"
 
 1745364420 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\club.cpp
 
 1745364256 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\goles.cpp
 
-1746673434 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\ligamanager.cpp
+1748394626 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\ligamanager.cpp
 	<iostream>
 	"ligaManager.h"
 	"jugador.h"
@@ -21,7 +21,7 @@
 	<iostream>
 	"menu.h"
 
-1746497528 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\menu.cpp
+1748389451 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\menu.cpp
 	"menu.h"
 	"ligaManager.h"
 	<iostream>
@@ -29,15 +29,16 @@
 	"rlutil.h"
 	<string>
 
-1746673068 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\jugador.cpp
+1748396173 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\jugador.cpp
 	"jugador.h"
 	<iostream>
 	<cstring>
 	<string>
 	<iomanip>
 
-1746673434 c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\jugador.h
+1748389324 c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\jugador.h
 	<string>
+	"Fecha.h"
 
 1746406530 c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\menu.h
 
@@ -55,9 +56,16 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1746495679 c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\archivojugador.h
+1748394060 c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\archivojugador.h
 	<string>
 	"jugador.h"
 
-1746493184 c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\ligamanager.h
+1748395952 c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\ligamanager.h
+	"jugador.h"
+
+1747082685 c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\fecha.h
+	<string>
+
+1747082685 source:c:\users\gonzo\desktop\tp integrador goleadores\goleadores\goleadores\fecha.cpp
+	"Fecha.h"
 

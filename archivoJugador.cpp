@@ -9,7 +9,7 @@ archivoJugador::archivoJugador(std::string nombreArchivoJugador)
     _nombreArchivoJugador = nombreArchivoJugador;
 }
 
-bool archivoJugador::guardarJugador(jugador registroJugador)
+bool archivoJugador::guardarRegistro(jugador registroJugador)
 {
     FILE *pFile;
     bool resultado;
@@ -69,6 +69,55 @@ jugador archivoJugador::leerJugador(int posicion)
     fclose(pFile);
 
     return reg;
+}
+
+int archivoJugador::buscarPorID(int id)
+{
+    FILE *pFile;
+    jugador reg;
+    int posicion=0;
+
+    pFile = fopen(_nombreArchivoJugador.c_str(), "rb");
+
+    if(pFile == nullptr)
+    {
+        return -1;
+    }
+
+    while(fread(&reg, sizeof(jugador), 1, pFile)==1)
+    {
+        if(reg.getJugadorID() == id)
+        {
+            return posicion;
+            fclose(pFile);
+        }
+
+        posicion++;
+    }
+
+    fclose(pFile);
+    return -1;
+}
+
+bool archivoJugador::reescribirRegistro(int indice, jugador registroJugador)
+{
+    FILE *pfile;
+    bool resultado;
+
+    pfile= fopen(_nombreArchivoJugador.c_str(), "rb+");
+
+    if(pfile == nullptr)
+    {
+        return false;
+    }
+
+    fseek(pfile, sizeof(jugador) * indice, SEEK_SET);
+
+    resultado = fwrite(&registroJugador, sizeof(jugador), 1, pfile);
+
+    fclose(pfile);
+
+    return resultado;
 }
 
 

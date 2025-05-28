@@ -67,18 +67,22 @@ void menu::menuPrincipal()
             rlutil::locate(30,13);
             cout << " 1)Inscripcion de Jugadores  "<<endl;
             rlutil::locate(30,14);
-            cout << " 2)Inscripcion de Equipos "<<endl;
+            cout << " 2)Inscripcion de Club "<<endl;
             rlutil::locate(30,15);
             cout << " 3)Registro de Goles "<<endl;
             rlutil::locate(30,16);
-            cout <<" 4)CREDITO"<<endl;
+            cout <<" 4)Listados"<<endl;
             rlutil::locate(30,17);
-            cout << " 0)SALIR "<<endl;
+            cout <<" 5)Consultas"<<endl;
             rlutil::locate(30,18);
-            cout << "--------------"<<endl;
+            cout <<" 6)Imformes"<<endl;
             rlutil::locate(30,19);
-            cout << "Use las flechas para arriba y para abajo para moverse en el menu "<<endl;
+            cout << " 7)SALIR "<<endl;
             rlutil::locate(30,20);
+            cout << "--------------"<<endl;
+            rlutil::locate(30,21);
+            cout << "Use las flechas para arriba y para abajo para moverse en el menu "<<endl;
+            rlutil::locate(30,22);
             cout << "Use la tecla enter para seleccionar"<<endl;
 
             //en showitem como primer parametro le mandamos las opciones del menu
@@ -88,10 +92,12 @@ void menu::menuPrincipal()
             // va a cambiar por cada una de las opciones. esto seria una operacion logica, utilizando el operador de relacion.
             // va a devolver verdadero o falso segun baje o suba " Y " va cambiando segun cuanto valga.
             showItem(" 1)Inscripcion de Jugadores   ",30,13,y==0 );
-            showItem(" 2)Inscripcion de Equipos   ",30,14,y==1 );
+            showItem(" 2)Inscripcion de Club   ",30,14,y==1 );
             showItem(" 3)Registro de Goles ",30,15,y==2 );
-            showItem(" 4)CREDITOS     ",30,16,y==3 );
-            showItem(" 0)SALIR        ",30,17,y==4 );
+            showItem(" 4)Listados     ",30,16,y==3 );
+            showItem(" 5)Consultas     ",30,17,y==4 );
+            showItem(" 6)Informes     ",30,18,y==5 );
+            showItem(" 7)SALIR        ",30,19,y==6 );
             rlutil::locate(30,12+y);
             // agregandole al comando rlutil::locate(30,12); una +y asi : rlutil::locate(30,12+y);
             //cout << (char)175<<endl;
@@ -129,9 +135,9 @@ void menu::menuPrincipal()
                 // en blanco para que se boore la flecha para seleccionar y se dibuje donde corresponde.
                 y++;
                 // el y con el mas mas es para que suba
-                if (y>4)
+                if (y>6)
                 {
-                    y=4;
+                    y=6;
                 }
                 // con este if pongo el limite Final del menu para seleccionar.
                 /// se pone de 0 a 4 ya que cuenta desde el 0,la cantidad de opciones.
@@ -157,26 +163,40 @@ void menu::menuPrincipal()
                     system ("cls");
                     break;
                 case 1:
-                    cout<< "Aca metodo opcion 2"<<endl; ///Metodo para ingresar clubes
+                    cout<< "Aca Inscripcion de club"<<endl; ///Metodo para ingresar clubes
                     cout<<" "<<endl;
                     system("pause");
                     system ("cls");
                     break;
                 case 2:
                     system ("cls");
-                    cout<< "Aca metodo opcion 3"<<endl; ///Metodo para ingresar goles
+                    cout<< "Aca registro de goles"<<endl; ///Metodo para ingresar goles
                     cout<<" "<<endl;
                     system("pause");
                     system ("cls");
                     break;
                 case 3:
                     system ("cls");
-                    cout<< "Aca metodo opcion 4"<<endl; ///Metodo para ingresar goles
+                    cout<< "Aca metodos Listados"<<endl; ///Metodo para ingresar goles
                     cout<<" "<<endl;
                     system("pause");
                     system ("cls");
                     break;
                 case 4:
+                    system ("cls");
+                    cout<< "Aca metodos Consultas"<<endl; ///Metodo para ingresar goles
+                    cout<<" "<<endl;
+                    system("pause");
+                    system ("cls");
+                    break;
+                case 5:
+                    system ("cls");
+                    cout<< "Aca metodos Informes"<<endl; ///Metodo para ingresar goles
+                    cout<<" "<<endl;
+                    system("pause");
+                    system ("cls");
+                    break;
+                case 6:
                     ///SALIR
                     /// en este caso apretamos enter y sale que es la opcion de salir.
 
@@ -227,7 +247,7 @@ void menu::menuPrincipal()
 
 void menu::menuJugadores()
 {
-     ligaManager lManager;
+    ligaManager lManager;
 
 ///inicializacion para las opciones del menu
 /// a " Y " la inicializamos en 0.
@@ -258,8 +278,10 @@ void menu::menuJugadores()
             cout << " 1)Inscripcion de Jugadores  "<<endl;
             rlutil::locate(30,14);
             cout << " 2)Listar jugadores inscriptos "<<endl;
+            rlutil::locate(30,14);
+            cout << " 3)Modificar jugadores inscriptos "<<endl;
             rlutil::locate(30,15);
-            cout << " 3)Volver "<<endl;
+            cout << " 4)Volver "<<endl;
             /*rlutil::locate(30,16);
             cout <<" 4)CREDITO"<<endl;
             rlutil::locate(30,17);
@@ -279,7 +301,8 @@ void menu::menuJugadores()
             // va a devolver verdadero o falso segun baje o suba " Y " va cambiando segun cuanto valga.
             showItem(" 1)Inscripcion de Jugadores   ",30,13,y==0 );
             showItem(" 2)Listar jugadores inscriptos   ",30,14,y==1 );
-            showItem(" 3)Volver ",30,15,y==2 );
+            showItem(" 3)Modificar jugadores inscriptos   ",30,15,y==2 );
+            showItem(" 4)Volver ",30,16,y==3 );
             //showItem(" 4)CREDITOS     ",30,16,y==3 );
             //showItem(" 0)VOLVER        ",30,17,y==4 );
             rlutil::locate(30,12+y);
@@ -319,9 +342,9 @@ void menu::menuJugadores()
                 // en blanco para que se boore la flecha para seleccionar y se dibuje donde corresponde.
                 y++;
                 // el y con el mas mas es para que suba
-                if (y>2)
+                if (y>3)
                 {
-                    y=2;
+                    y=3;
                 }
                 // con este if pongo el limite Final del menu para seleccionar.
                 /// se pone de 0 a 4 ya que cuenta desde el 0,la cantidad de opciones.
@@ -347,10 +370,9 @@ void menu::menuJugadores()
                     system("pause");
                     system ("cls");
                     break;
-                case 3:
+                case 2:
                     system ("cls");
-                    cout<< "Aca metodo opcion 3"<<endl; ///Otro metodo si lo hay
-                    cout<<" "<<endl;
+                    lManager.modificarJugadores();
                     system("pause");
                     system ("cls");
                     break;
@@ -361,7 +383,7 @@ void menu::menuJugadores()
                     system("pause");
                     system ("cls");
                     break;
-                case 2:
+                case 3:
                     ///volver
                     /// en este caso apretamos enter para volver.
                     system("cls");

@@ -11,8 +11,10 @@ public:
     archivoJugador();
     archivoJugador(std::string nombreArchivoJugador);
 
-    bool guardarJugador(jugador registroJugador);
+    bool guardarRegistro(jugador registroJugador);
+    bool reescribirRegistro(int indice, jugador registroJugador);
     int getCantidadRegistros();
     jugador leerJugador(int posicion);
-
+    int buscarPorID(int id);
 };
+
