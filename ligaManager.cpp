@@ -13,14 +13,16 @@ void ligaManager::inscripcionJugador()
 {
     int jugadorID, dni, codClub, dia, mes, anio;
     string nombre, apellido, telefono, email;
+    bool eliminado = false;
     Fecha fechaDeNacimiento;
     jugador nuevoJugador;
     archivoJugador archJugador;
 
 
 
-    cout<< "Ingrese ID del jugador: ";
-    cin>> jugadorID;
+    jugadorID = archJugador.generarNuevoId();
+    cout<< "ID del jugador: ";
+    cout<< jugadorID<<endl;
 
     cout<< "Ingrese DNI: ";
     cin>> dni;
@@ -51,7 +53,7 @@ void ligaManager::inscripcionJugador()
     cin>> anio;
     fechaDeNacimiento.setAnio(anio);
 
-    nuevoJugador = jugador(jugadorID, dni, codClub, nombre, apellido, telefono, email, fechaDeNacimiento);
+    nuevoJugador = jugador(jugadorID, dni, codClub, nombre, apellido, telefono, email, fechaDeNacimiento, eliminado);
 
     if(archJugador.guardarRegistro(nuevoJugador))
     {
@@ -79,7 +81,10 @@ void ligaManager::listarRegistros()
         for(int x=0; x<cantRegistros; x++)
         {
             registro = archJugador.leerJugador(x);
-            registro.mostrarEnColumna();
+            if(registro.getEliminado() != true)
+            {
+                registro.mostrarEnColumna();
+            }
         }
     }
     else
@@ -105,7 +110,7 @@ void ligaManager::modificarJugadores()
         regJugador = archJugador.leerJugador(indiceRegistro);
         cout<< regJugador.leerRegistro()<<endl<<endl;
 
-        actualizarDatos(regJugador);
+        actualizarDatosJugador(regJugador);
 
         if(archJugador.reescribirRegistro(indiceRegistro, regJugador))
         {
@@ -124,7 +129,54 @@ void ligaManager::modificarJugadores()
 
 }
 
-void ligaManager::actualizarDatos(jugador &registroJugador)
+void ligaManager::eliminarJugador()
+{
+    int idJugador, indiceRegistro;
+    bool eliminar=0;
+    jugador regJugador;
+    archivoJugador archJugador;
+
+    cout<< "Ingrese ID del jugador a eliminar: ";
+    cin>> idJugador;
+    cout<<endl;
+
+    indiceRegistro = archJugador.buscarPorID(idJugador);
+
+    if(indiceRegistro != -1)
+    {
+        regJugador = archJugador.leerJugador(indiceRegistro);
+        cout<< regJugador.leerRegistro()<<endl<<endl;
+
+        cout<< "¿Estas seguro que quiere eliminar el jugador?"<<endl;
+        cout<< "1-Si  0-No"<<endl;
+        cin>> eliminar;
+
+        if(eliminar)
+        {
+            regJugador.setEliminado(eliminar);
+
+            if(archJugador.reescribirRegistro(indiceRegistro, regJugador))
+            {
+                cout<< "Se elimino con exito!!"<<endl;
+            }
+            else
+            {
+                cout<< "No se pudo eliminar el jugador!"<<endl;
+            }
+        }
+        else
+        {
+            cout<< "El jugador no se elimino!"<<endl;
+        }
+
+    }
+    else
+    {
+        cout<< "No se encontro jugador con ese ID "<<endl<<endl;
+    }
+}
+
+void ligaManager::actualizarDatosJugador(jugador &registroJugador)
 {
     int dni, codClub, dia, mes, anio;
     string nombre, apellido, telefono, email;

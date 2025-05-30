@@ -120,4 +120,18 @@ bool archivoJugador::reescribirRegistro(int indice, jugador registroJugador)
     return resultado;
 }
 
+int archivoJugador::generarNuevoId()
+{
+    int cantidad = getCantidadRegistros();
+
+    if(cantidad > 0)
+    {
+        return leerJugador(cantidad-1).getJugadorID()+1;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
 

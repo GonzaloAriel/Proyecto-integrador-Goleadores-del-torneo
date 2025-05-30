@@ -7,5 +7,6 @@ public:
     void inscripcionJugador();
     void listarRegistros();
     void modificarJugadores();
-    void actualizarDatos(jugador &registroJugador);
+    void actualizarDatosJugador(jugador &registroJugador);
+    void eliminarJugador();
 };

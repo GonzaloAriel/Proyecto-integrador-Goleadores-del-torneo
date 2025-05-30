@@ -16,10 +16,11 @@ jugador::jugador()
     strcpy(_telefono, "");
     strcpy(_email, "");
     _fechaDeNacimiento = Fecha();
+    _eliminado = true;
 }
 
 jugador::jugador(int jugadorID, int dni, int codigoClub, std::string nombre, std::string apellido,
-                 std::string telefono, std::string email, Fecha fecha)
+                 std::string telefono, std::string email, Fecha fecha, bool eliminado)
 {
     setJugadorID(jugadorID);
     setDni(dni);
@@ -29,6 +30,7 @@ jugador::jugador(int jugadorID, int dni, int codigoClub, std::string nombre, std
     setTelefono(telefono);
     setEmail(email);
     setFechaNacimiento(fecha);
+    setEliminado(eliminado);
 }
 
 //Setter:
@@ -63,6 +65,10 @@ void jugador::setEmail(std::string email)
 void jugador::setFechaNacimiento(Fecha fecha)
 {
     _fechaDeNacimiento = fecha;
+}
+void jugador::setEliminado(bool eliminado)
+{
+    _eliminado = eliminado;
 }
 
 
@@ -99,6 +105,10 @@ Fecha jugador::getFechaNacimiento()
 {
     return _fechaDeNacimiento;
 }
+bool jugador::getEliminado()
+{
+    return _eliminado;
+}
 
 
 
@@ -112,7 +122,8 @@ std::string jugador::leerRegistro()
     str += string(_nombre) + ",";
     str += string(_telefono) + ",";
     str += string(_email) + ",";
-    str += _fechaDeNacimiento.toString();
+    str += _fechaDeNacimiento.toString() + ",";
+    str += to_string(_eliminado);
     return str;
 }
 

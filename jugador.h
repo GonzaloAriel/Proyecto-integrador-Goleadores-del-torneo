@@ -13,12 +13,13 @@ private:
     char _telefono [50];
     char _email [60];
     Fecha _fechaDeNacimiento;
+    bool _eliminado;
 
 public:
     jugador();
 
     jugador(int jugadorID, int dni, int codigoClub, std::string nombre, std::string apellido,
-            std::string telefono, std::string email, Fecha fecha);
+            std::string telefono, std::string email, Fecha fecha, bool eliminado);
 
             void setJugadorID(int jugadorID);
             void setDni(int dni);
@@ -28,6 +29,7 @@ public:
             void setTelefono(std::string telefono);
             void setEmail(std::string email);
             void setFechaNacimiento(Fecha fecha);
+            void setEliminado(bool eliminado);
 
             int getJugadorID();
             int getDni();
@@ -37,6 +39,7 @@ public:
             std::string getTelefono();
             std::string getEmail();
             Fecha getFechaNacimiento();
+            bool getEliminado();
 
             std::string leerRegistro();
 

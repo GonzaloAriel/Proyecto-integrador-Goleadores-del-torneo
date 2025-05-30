@@ -16,5 +16,6 @@ public:
     int getCantidadRegistros();
     jugador leerJugador(int posicion);
     int buscarPorID(int id);
+    int generarNuevoId();
 };
 
