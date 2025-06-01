@@ -71,6 +71,22 @@ jugador archivoJugador::leerJugador(int posicion)
     return reg;
 }
 
+void archivoJugador::leerTodos(jugador vecJugadores[], int cantidad)
+{
+    FILE* pFile;
+
+    pFile = fopen(_nombreArchivoJugador.c_str(), "rb");
+
+    if(pFile==nullptr)
+    {
+        return;
+    }
+
+    fread(vecJugadores, sizeof(jugador), cantidad, pFile);
+
+    fclose(pFile);
+}
+
 int archivoJugador::buscarPorID(int id)
 {
     FILE *pFile;

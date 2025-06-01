@@ -131,13 +131,13 @@ void jugador::mostrarEnColumna()
 {
     std::cout << std::left
               << std::setw(10) << _jugadorID
-              << std::setw(10) << _dni
+              << std::setw(15) << _dni
               << std::setw(12) << _codigoClub
-              << std::setw(15) << _nombre
-              << std::setw(15) << _apellido
-              << std::setw(15) << _telefono
+              << std::setw(25) << _nombre
+              << std::setw(25) << _apellido
+              << std::setw(25) << _telefono
               << std::setw(25) << _email
-              << std::setw(15) << _fechaDeNacimiento.toString()
+              << std::setw(25) << _fechaDeNacimiento.toString()
               << std::endl<<endl;
 }
 
@@ -145,15 +145,15 @@ void jugador::encabezados()
 {
     std::cout << std::left
               << std::setw(10) << "ID"
-              << std::setw(10) << "DNI"
+              << std::setw(15) << "DNI"
               << std::setw(12) << "CodClub"
-              << std::setw(15) << "Nombre"
-              << std::setw(15) << "Apellido"
-              << std::setw(15) << "Teléfono"
+              << std::setw(25) << "Nombre"
+              << std::setw(25) << "Apellido"
+              << std::setw(25) << "Telefono"
               << std::setw(25) << "Email"
-              << std::setw(15) << "F. Nacim."
+              << std::setw(25) << "F. Nacim."
               << std::endl;
 
-    std::cout << std::string(107, '-') << std::endl;
+    std::cout << std::string(130, '-') << std::endl;
 }
 

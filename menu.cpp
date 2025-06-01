@@ -365,7 +365,7 @@ void menu::menuJugadores()
                     system ("cls");
                     break;
                 case 1:
-                    lManager.listarRegistros(); ///Metodo para listar jugadores
+                    lManager.listarRegistrosDinamico(); ///Metodo para listar jugadores
                     system("pause");
                     system ("cls");
                     break;

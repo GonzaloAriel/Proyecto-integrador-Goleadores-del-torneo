@@ -15,6 +15,7 @@ public:
     bool reescribirRegistro(int indice, jugador registroJugador);
     int getCantidadRegistros();
     jugador leerJugador(int posicion);
+    void leerTodos(jugador vecJugadores[], int cantidad);
     int buscarPorID(int id);
     int generarNuevoId();
 };

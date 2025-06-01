@@ -11,61 +11,74 @@ using namespace std;
 
 void ligaManager::inscripcionJugador()
 {
-    int jugadorID, dni, codClub, dia, mes, anio;
+    int ingreso, jugadorID, dni, codClub, dia, mes, anio;
     string nombre, apellido, telefono, email;
     bool eliminado = false;
     Fecha fechaDeNacimiento;
     jugador nuevoJugador;
     archivoJugador archJugador;
 
+    cout<< "1= Comenzar inscripcion /  0= Salir"<<endl;
+    cin>> ingreso;
 
-
-    jugadorID = archJugador.generarNuevoId();
-    cout<< "ID del jugador: ";
-    cout<< jugadorID<<endl;
-
-    cout<< "Ingrese DNI: ";
-    cin>> dni;
-
-    cout<< "Ingrese código que identifica al club: ";
-    cin>> codClub;
-
-    cout<< "Ingrese nombre: ";
-    cin>> nombre;
-
-    cout<< "Ingrese apellido: ";
-    cin>> apellido;
-
-    cout<< "Ingrese telefono: ";
-    cin>> telefono;
-
-    cout<< "Ingrese email: ";
-    cin>> email;
-
-    cout<< "Ingrese fecha de nacimiento: "<<endl;
-    cout<< "Dia: ";
-    cin>> dia;
-    fechaDeNacimiento.setDia(dia);
-    cout<< "Mes: ";
-    cin>> mes;
-    fechaDeNacimiento.setMes(mes);
-    cout<< "Anio: ";
-    cin>> anio;
-    fechaDeNacimiento.setAnio(anio);
-
-    nuevoJugador = jugador(jugadorID, dni, codClub, nombre, apellido, telefono, email, fechaDeNacimiento, eliminado);
-
-    if(archJugador.guardarRegistro(nuevoJugador))
+    while(ingreso == 1)
     {
-        cout<<endl;
-        cout<< "Se inscribio correctamente el jugador!!"<<endl;
-    }
-    else
-    {
-        cout<< "No se pudo guardar! Consultar a operario de sistema"<<endl;
+        jugadorID = archJugador.generarNuevoId();
+        cout<< "ID del jugador: ";
+        cout<< jugadorID<<endl;
+
+        cout<< "Ingrese DNI: ";
+        cin>> dni;
+
+        cout<< "Ingrese codigo que identifica al club: ";
+        cin>> codClub;
+
+        cout<< "Ingrese nombre: ";
+        cin.ignore();
+        getline(cin, nombre);
+
+        cout<< "Ingrese apellido: ";
+        getline(cin, apellido);
+
+        cout<< "Ingrese telefono: ";
+        cin>> telefono;
+
+        cout<< "Ingrese email: ";
+        cin.ignore();
+        getline(cin, email);
+
+        cout<< "Ingrese fecha de nacimiento: "<<endl;
+        cout<< "Dia: ";
+        cin>> dia;
+        fechaDeNacimiento.setDia(dia);
+        cout<< "Mes: ";
+        cin>> mes;
+        fechaDeNacimiento.setMes(mes);
+        cout<< "Anio: ";
+        cin>> anio;
+        fechaDeNacimiento.setAnio(anio);
+
+        nuevoJugador = jugador(jugadorID, dni, codClub, nombre, apellido, telefono, email, fechaDeNacimiento, eliminado);
+
+        if(archJugador.guardarRegistro(nuevoJugador))
+        {
+            cout<<endl;
+            cout<< "Se inscribio correctamente el jugador!!"<<endl;
+        }
+        else
+        {
+            cout<< "No se pudo guardar! Consultar a operario de sistema"<<endl;
+        }
+
+        cout<< nuevoJugador.leerRegistro()<<endl<<endl;
+
+
+        cout<< "Continuar inscripcion?: "<<endl;
+        cout<< "1=SI       0=NO"<<endl;
+        cin>> ingreso;
     }
 
-    cout<< nuevoJugador.leerRegistro()<<endl;
+
 }
 
 void ligaManager::listarRegistros()
@@ -91,6 +104,41 @@ void ligaManager::listarRegistros()
     {
         cout<< "No hay registros"<<endl;
     }
+}
+
+void ligaManager::listarRegistrosDinamico()
+{
+    int cantRegistros = archivoJugador().getCantidadRegistros();
+
+    jugador *registros;
+
+    registros = new jugador[cantRegistros];
+
+    if(registros==nullptr)
+    {
+        cout<< "No se pudo pedir memoria!"<<endl;
+        return;
+    }
+
+    archivoJugador().leerTodos(registros, cantRegistros);
+
+    if(cantRegistros > 0)
+    {
+        jugador().encabezados();
+        for(int x=0; x<cantRegistros; x++)
+        {
+            if(registros[x].getEliminado() != true)
+            {
+                registros[x].mostrarEnColumna();
+            }
+        }
+    }
+    else
+    {
+        cout<< "No hay registros"<<endl;
+    }
+
+    delete []registros;
 }
 
 void ligaManager::modificarJugadores()
@@ -186,16 +234,17 @@ void ligaManager::actualizarDatosJugador(jugador &registroJugador)
     cin>> dni;
     registroJugador.setDni(dni);
 
-    cout<< "Ingrese código que identifica al club: ";
+    cout<< "Ingrese codigo que identifica al club: ";
     cin>> codClub;
     registroJugador.setCodigoClub(codClub);
 
     cout<< "Ingrese nombre: ";
-    cin>> nombre;
+    cin.ignore();
+    getline(cin, nombre);
     registroJugador.setNombre(nombre);
 
     cout<< "Ingrese apellido: ";
-    cin>> apellido;
+    getline(cin, apellido);
     registroJugador.setApellido(apellido);
 
     cout<< "Ingrese telefono: ";
@@ -203,7 +252,8 @@ void ligaManager::actualizarDatosJugador(jugador &registroJugador)
     registroJugador.setTelefono(telefono);
 
     cout<< "Ingrese email: ";
-    cin>> email;
+    cin.ignore();
+    getline(cin, email);
     registroJugador.setEmail(email);
 
     cout<< "Ingrese fecha de nacimiento: "<<endl;
