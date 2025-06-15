@@ -360,7 +360,7 @@ void menu::menuJugadores()
                 switch(y)
                 {
                 case 0:
-                    lManager.inscripcionJugador();///Metodo para ingresar jugadores
+                    jugador().cargarJugador();///Metodo para ingresar jugadores
                     system("pause");
                     system ("cls");
                     break;

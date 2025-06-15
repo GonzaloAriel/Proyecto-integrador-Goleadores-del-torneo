@@ -1,4 +1,6 @@
 #include "jugador.h"
+#include "archivoJugador.h"
+#include "ligaManager.h"
 #include <iostream>
 #include <cstring>
 #include <string>
@@ -111,49 +113,128 @@ bool jugador::getEliminado()
 }
 
 
+//*****************************************************************************************//
+///Metodos Jugador
 
-std::string jugador::leerRegistro()
+void jugador::cargarJugador()
+{
+    int ingreso, jugadorID, dni, codClub, dia, mes, anio;
+    string nombre, apellido, telefono, email;
+    bool eliminado = false;
+    Fecha fechaDeNacimiento;
+    jugador nuevoJugador;
+    archivoJugador archJugador;
+
+    cout<< "1= Comenzar inscripcion /  0= Salir"<<endl;
+    cin>> ingreso;
+    system ("cls");
+
+    while(ingreso == 1)
+    {
+        jugadorID = archJugador.generarNuevoId();
+        cout<< "ID del jugador: "<<endl;
+        cout<< jugadorID<<endl;
+        cout<<endl;
+
+        if(ligaManager().cargarDNI(dni))
+        {
+            break;
+        }
+
+
+        cout<< "Ingrese codigo que identifica al club: ";
+        cin>> codClub;
+
+        cout<< "Ingrese nombre: ";
+        cin.ignore();
+        getline(cin, nombre);
+
+        cout<< "Ingrese apellido: ";
+        getline(cin, apellido);
+
+        cout<< "Ingrese telefono: ";
+        cin>> telefono;
+
+        cout<< "Ingrese email: ";
+        cin.ignore();
+        getline(cin, email);
+
+
+        cout<< "Ingrese fecha de nacimiento: "<<endl;
+        cout<< "Dia: ";
+        cin>> dia;
+        cout<< "Mes: ";
+        cin>> mes;
+        cout<< "Anio: ";
+        cin>> anio;
+
+        fechaDeNacimiento.setDia(dia);
+        fechaDeNacimiento.setMes(mes);
+        fechaDeNacimiento.setAnio(anio);
+
+        nuevoJugador = jugador(jugadorID, dni, codClub, nombre, apellido, telefono, email, fechaDeNacimiento, eliminado);
+
+        if(archJugador.guardarRegistro(nuevoJugador))
+        {
+            cout<<endl;
+            cout<< "Se inscribio correctamente el jugador!!"<<endl;
+        }
+        else
+        {
+            cout<< "No se pudo guardar! Consultar a operario de sistema"<<endl;
+        }
+
+        cout<< nuevoJugador.mostrarRegistroCSV()<<endl<<endl;
+
+
+        cout<< "Continuar inscripcion?: "<<endl;
+        cout<< "1=SI       0=NO"<<endl;
+        cin>> ingreso;
+    }
+}
+
+void jugador::mostrar()
+{
+    std::cout << std::left
+              << std::setw(8) << _jugadorID
+              << std::setw(10) << _dni
+              << std::setw(10) << _codigoClub
+              << std::setw(25) << _nombre
+              << std::setw(25) << _apellido
+              << std::setw(13) << _telefono
+              << std::setw(35) << _email
+              << std::setw(15) << _fechaDeNacimiento.toString()
+              << std::endl<<endl;
+}
+
+void jugador::encabezadosJugador()
+{
+    std::cout << std::left
+              << std::setw(8) << "ID"
+              << std::setw(10) << "DNI"
+              << std::setw(10) << "CodClub"
+              << std::setw(25) << "Nombre"
+              << std::setw(25) << "Apellido"
+              << std::setw(13) << "Telefono"
+              << std::setw(35) << "Email"
+              << std::setw(15) << "F. Nacim."
+              << std::endl;
+
+    std::cout << std::string(130, '-') << std::endl;
+}
+
+std::string jugador::mostrarRegistroCSV()
 {
     std::string str = "";
 
     str = to_string(_dni) + ",";
     str += to_string(_codigoClub) + ",";
-    str += string(_apellido) + ",";
     str += string(_nombre) + ",";
+    str += string(_apellido) + ",";
     str += string(_telefono) + ",";
     str += string(_email) + ",";
     str += _fechaDeNacimiento.toString() + ",";
     str += to_string(_eliminado);
     return str;
-}
-
-void jugador::mostrarEnColumna()
-{
-    std::cout << std::left
-              << std::setw(10) << _jugadorID
-              << std::setw(15) << _dni
-              << std::setw(12) << _codigoClub
-              << std::setw(25) << _nombre
-              << std::setw(25) << _apellido
-              << std::setw(25) << _telefono
-              << std::setw(25) << _email
-              << std::setw(25) << _fechaDeNacimiento.toString()
-              << std::endl<<endl;
-}
-
-void jugador::encabezados()
-{
-    std::cout << std::left
-              << std::setw(10) << "ID"
-              << std::setw(15) << "DNI"
-              << std::setw(12) << "CodClub"
-              << std::setw(25) << "Nombre"
-              << std::setw(25) << "Apellido"
-              << std::setw(25) << "Telefono"
-              << std::setw(25) << "Email"
-              << std::setw(25) << "F. Nacim."
-              << std::endl;
-
-    std::cout << std::string(130, '-') << std::endl;
 }
 

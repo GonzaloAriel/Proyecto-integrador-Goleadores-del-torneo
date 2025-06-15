@@ -41,8 +41,9 @@ public:
             Fecha getFechaNacimiento();
             bool getEliminado();
 
-            std::string leerRegistro();
+            void cargarJugador();
+            void mostrar();
 
-            void encabezados();
-            void mostrarEnColumna();
+            std::string mostrarRegistroCSV();
+            void encabezadosJugador();
 };

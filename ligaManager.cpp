@@ -9,78 +9,6 @@
 
 using namespace std;
 
-void ligaManager::inscripcionJugador()
-{
-    int ingreso, jugadorID, dni, codClub, dia, mes, anio;
-    string nombre, apellido, telefono, email;
-    bool eliminado = false;
-    Fecha fechaDeNacimiento;
-    jugador nuevoJugador;
-    archivoJugador archJugador;
-
-    cout<< "1= Comenzar inscripcion /  0= Salir"<<endl;
-    cin>> ingreso;
-
-    while(ingreso == 1)
-    {
-        jugadorID = archJugador.generarNuevoId();
-        cout<< "ID del jugador: ";
-        cout<< jugadorID<<endl;
-
-        cout<< "Ingrese DNI: ";
-        cin>> dni;
-
-        cout<< "Ingrese codigo que identifica al club: ";
-        cin>> codClub;
-
-        cout<< "Ingrese nombre: ";
-        cin.ignore();
-        getline(cin, nombre);
-
-        cout<< "Ingrese apellido: ";
-        getline(cin, apellido);
-
-        cout<< "Ingrese telefono: ";
-        cin>> telefono;
-
-        cout<< "Ingrese email: ";
-        cin.ignore();
-        getline(cin, email);
-
-        cout<< "Ingrese fecha de nacimiento: "<<endl;
-        cout<< "Dia: ";
-        cin>> dia;
-        fechaDeNacimiento.setDia(dia);
-        cout<< "Mes: ";
-        cin>> mes;
-        fechaDeNacimiento.setMes(mes);
-        cout<< "Anio: ";
-        cin>> anio;
-        fechaDeNacimiento.setAnio(anio);
-
-        nuevoJugador = jugador(jugadorID, dni, codClub, nombre, apellido, telefono, email, fechaDeNacimiento, eliminado);
-
-        if(archJugador.guardarRegistro(nuevoJugador))
-        {
-            cout<<endl;
-            cout<< "Se inscribio correctamente el jugador!!"<<endl;
-        }
-        else
-        {
-            cout<< "No se pudo guardar! Consultar a operario de sistema"<<endl;
-        }
-
-        cout<< nuevoJugador.leerRegistro()<<endl<<endl;
-
-
-        cout<< "Continuar inscripcion?: "<<endl;
-        cout<< "1=SI       0=NO"<<endl;
-        cin>> ingreso;
-    }
-
-
-}
-
 void ligaManager::listarRegistros()
 {
     archivoJugador archJugador;
@@ -90,13 +18,13 @@ void ligaManager::listarRegistros()
 
     if(cantRegistros > 0)
     {
-        registro.encabezados();
+        registro.encabezadosJugador();
         for(int x=0; x<cantRegistros; x++)
         {
             registro = archJugador.leerJugador(x);
             if(registro.getEliminado() != true)
             {
-                registro.mostrarEnColumna();
+                registro.mostrar();
             }
         }
     }
@@ -124,12 +52,12 @@ void ligaManager::listarRegistrosDinamico()
 
     if(cantRegistros > 0)
     {
-        jugador().encabezados();
+        jugador().encabezadosJugador();
         for(int x=0; x<cantRegistros; x++)
         {
             if(registros[x].getEliminado() != true)
             {
-                registros[x].mostrarEnColumna();
+                registros[x].mostrar();
             }
         }
     }
@@ -146,6 +74,7 @@ void ligaManager::modificarJugadores()
     int idJugador, indiceRegistro;
     jugador regJugador;
     archivoJugador archJugador;
+    bool alta;
 
     cout<< "Ingrese ID del jugador a modificar: ";
     cin>> idJugador;
@@ -156,19 +85,40 @@ void ligaManager::modificarJugadores()
     if(indiceRegistro != -1)
     {
         regJugador = archJugador.leerJugador(indiceRegistro);
-        cout<< regJugador.leerRegistro()<<endl<<endl;
+        cout<< regJugador.mostrarRegistroCSV()<<endl<<endl;
 
-        actualizarDatosJugador(regJugador);
-
-        if(archJugador.reescribirRegistro(indiceRegistro, regJugador))
+        if(regJugador.getEliminado()== true)
         {
-            cout<< "Se modifico con exito el jugador"<<endl;
+            cout<< "Este jugador se encuentra dado de baja"<<endl<<endl;
+            cout<< "Desea volver a dar el alta nuevamente?"<<endl;
+            cout<< "Presione:   (1)SI / (0)NO"<<endl;
+            cin>>alta;
+            if(alta)
+            {
+                regJugador.setEliminado(0);
+                if(archJugador.reescribirRegistro(indiceRegistro, regJugador))
+                {
+                    cout<< "Se habilito con exito el jugador"<<endl;
+                }
+                else
+                {
+                    cout<< "No se pudo habilitar jugador"<<endl;
+                }
+            }
         }
         else
         {
-            cout<< "No se pudo modificar los datos del jugador"<<endl;
-        }
+            actualizarDatosJugador(regJugador);
 
+            if(archJugador.reescribirRegistro(indiceRegistro, regJugador))
+            {
+                cout<< "Se modifico con exito el jugador"<<endl;
+            }
+            else
+            {
+                cout<< "No se pudo modificar los datos del jugador"<<endl;
+            }
+        }
     }
     else
     {
@@ -193,7 +143,7 @@ void ligaManager::eliminarJugador()
     if(indiceRegistro != -1)
     {
         regJugador = archJugador.leerJugador(indiceRegistro);
-        cout<< regJugador.leerRegistro()<<endl<<endl;
+        cout<< regJugador.mostrarRegistroCSV()<<endl<<endl;
 
         cout<< "¿Estas seguro que quiere eliminar el jugador?"<<endl;
         cout<< "1-Si  0-No"<<endl;
@@ -266,4 +216,45 @@ void ligaManager::actualizarDatosJugador(jugador &registroJugador)
     cout<< "Anio: ";
     cin>> anio;
     registroJugador.getFechaNacimiento().setAnio(anio);
+}
+
+bool ligaManager::cargarDNI(int &dni)
+{
+    cout<< "Ingrese DNI: "<<endl;
+    cin>> dni;
+    cout<<endl;
+
+    int cantRegistros = archivoJugador().getCantidadRegistros();
+
+    jugador *registros;
+
+    registros = new jugador[cantRegistros];
+
+    if(registros==nullptr)
+    {
+        cout<< "No se pudo pedir memoria!"<<endl;
+        return true;
+    }
+
+    archivoJugador().leerTodos(registros, cantRegistros);
+
+    if(cantRegistros > 0)
+    {
+        for(int x=0; x<cantRegistros; x++)
+        {
+            if(registros[x].getDni() == dni)
+            {
+                cout<< "DNI ya registrado!!"<<endl<<endl;
+                return true;
+            }
+        }
+    }
+    else
+    {
+        cout<< "No hay registros"<<endl;
+    }
+
+    delete []registros;
+
+    return false;
 }

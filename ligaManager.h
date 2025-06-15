@@ -4,10 +4,13 @@
 class ligaManager
 {
 public:
-    void inscripcionJugador();
+
+    ///Manager Jugador
+
     void listarRegistros();
     void listarRegistrosDinamico();
     void modificarJugadores();
     void actualizarDatosJugador(jugador &registroJugador);
     void eliminarJugador();
+    bool cargarDNI(int &dni);
 };
